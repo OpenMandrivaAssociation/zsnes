@@ -1,6 +1,6 @@
 %define name zsnes
 %define version 1.51
-%define release %mkrel 2
+%define release %mkrel 3
 %define fversion %(echo %version|sed s/\\\\\.//)
 %define dversion %(echo %version|sed s/\\\\\./_/)
 
@@ -20,6 +20,7 @@ BuildRequires: libpng-devel
 BuildRequires: libSDL-devel >= 1.2 
 BuildRequires: libmesagl-devel
 BuildRequires: libncurses-devel
+BuildRequires: libao-devel
 Epoch: 1
 
 %description
@@ -42,7 +43,7 @@ cd src
 # zsnes do not work with fortify patch, and i frankly do not want to mess with the mix of asm and C source code
 # (misc)
 export CFLAGS="-O2 -g -pipe -fexceptions -fomit-frame-pointer -fasynchronous-unwind-tables"
-%configure --x-includes=/usr/X11R6/include --enable-release --disable-cpucheck force_arch=i586 
+%configure --x-includes=/usr/X11R6/include --enable-release --enable-libao --disable-cpucheck force_arch=i586 
 make
 
 %install
