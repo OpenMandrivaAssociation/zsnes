@@ -13,6 +13,7 @@ Patch: zsnes150-desktop.patch
 Source1: %{name}-icons.tar.bz2
 License: GPL
 Group: Emulators
+BuildRoot: %{_tmppath}/%{name}-buildroot
 URL: http://zsnes.sourceforge.net
 BuildRequires: nasm
 BuildRequires: libpng-devel
