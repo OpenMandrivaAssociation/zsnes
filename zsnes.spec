@@ -1,6 +1,6 @@
 %define name zsnes
 %define version 1.51
-%define release %mkrel 3
+%define release %mkrel 4
 %define fversion %(echo %version|sed s/\\\\\.//)
 %define dversion %(echo %version|sed s/\\\\\./_/)
 
@@ -9,8 +9,9 @@ Name: %{name}
 Version: %{version}
 Release: %{release}
 Source0: http://prdownloads.sourceforge.net/zsnes/%{name}%{fversion}src.tar.bz2
-Patch: zsnes150-desktop.patch
 Source1: %{name}-icons.tar.bz2
+Patch0: zsnes150-desktop.patch
+Patch1: zsnes-1.51-libao.patch
 License: GPL
 Group: Emulators
 BuildRoot: %{_tmppath}/%{name}-buildroot
@@ -34,7 +35,8 @@ and to save the game state, even network play is possible.
 %prep
 
 %setup -q -n %{name}_%dversion
-%patch -p1
+%patch0 -p1
+%patch1 -p1
 cd src
 ./autogen.sh
 
@@ -43,7 +45,7 @@ cd src
 # zsnes do not work with fortify patch, and i frankly do not want to mess with the mix of asm and C source code
 # (misc)
 export CFLAGS="-O2 -g -pipe -fexceptions -fomit-frame-pointer -fasynchronous-unwind-tables"
-%configure --x-includes=/usr/X11R6/include --enable-release --enable-libao --disable-cpucheck force_arch=i586 
+%configure --x-includes=/usr/X11R6/include --enable-libao --disable-cpucheck force_arch=i586 
 make
 
 %install
@@ -78,7 +80,7 @@ rm -rf %buildroot
 %{_iconsdir}/%{name}.png
 %{_miconsdir}/%{name}.png
 %{_liconsdir}/%{name}.png
-%{_mandir}/man1/%name.1*
-%_datadir/applications/%name.desktop
+%{_mandir}/man1/%{name}.1*
+%{_datadir}/applications/%{name}.desktop
 
 
