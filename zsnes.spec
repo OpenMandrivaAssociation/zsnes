@@ -23,6 +23,8 @@ BuildRequires: libmesagl-devel
 BuildRequires: libncurses-devel
 BuildRequires: libao-devel
 Epoch: 1
+#do not build currently on x86_64
+ExclusiveArch: %ix86
 
 %description
 This is an emulator for Nintendo's 16 bit console, called Super Nintendo 
