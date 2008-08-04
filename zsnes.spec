@@ -1,6 +1,6 @@
 %define name zsnes
 %define version 1.51
-%define release %mkrel 4
+%define release %mkrel 6
 %define fversion %(echo %version|sed s/\\\\\.//)
 %define dversion %(echo %version|sed s/\\\\\./_/)
 
