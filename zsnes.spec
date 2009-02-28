@@ -12,7 +12,8 @@ Source0: http://prdownloads.sourceforge.net/zsnes/%{name}%{fversion}src.tar.bz2
 Source1: %{name}-icons.tar.bz2
 Patch0: zsnes150-desktop.patch
 Patch1: zsnes-1.51-libao.patch
-License: GPL
+Patch2:	zsnes-1.51-gcc43.patch
+License: GPLv2+
 Group: Emulators
 BuildRoot: %{_tmppath}/%{name}-buildroot
 URL: http://zsnes.sourceforge.net
@@ -39,8 +40,10 @@ and to save the game state, even network play is possible.
 %setup -q -n %{name}_%dversion
 %patch0 -p1
 %patch1 -p1
+%patch2 -p0
 cd src
-./autogen.sh
+#./autogen.sh
+autoreconf -fiv
 
 %build
 cd src
