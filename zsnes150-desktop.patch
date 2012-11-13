@@ -1,0 +1,10 @@
+--- zsnes_1_50/src/linux/zsnes.desktop~	2006-12-22 02:59:54.000000000 +0100
++++ zsnes_1_50/src/linux/zsnes.desktop	2006-12-23 12:59:06.000000000 +0100
+@@ -4,6 +4,5 @@
+ Type=Application
+ Comment=SNES (Super Nintendo) emulator that uses x86 assembly
+ Exec=zsnes
+-Path=
+ Icon=zsnes.png
+-Categories=Application;Game;Emulator;
++Categories=Game;Emulator;X-MandrivaLinux-MoreApplications-Emulators;
