@@ -1,0 +1,60 @@
+From: Etienne Millon <etienne.millon@gmail.com>
+Date: Sun, 7 Aug 2011 13:05:06 +0200
+Subject: hat-events
+
+Properly reset directions on joysticks.
+
+This patch was pulled from Simeon Maxein's Ubuntu PPA :
+https://launchpad.net/~smaxein/+archive/ppa/+packages
+
+Its original author is hakonrk from the zsnes forum :
+http://board.zsnes.com/phpBB3/viewtopic.php?t=12544
+
+Ubuntu bug report :
+https://bugs.launchpad.net/ubuntu/+source/zsnes/+bug/519845
+
+===================================================================
+---
+ src/linux/sdllink.c |    8 ++++++++
+ 1 file changed, 8 insertions(+)
+
+diff --git a/src/linux/sdllink.c b/src/linux/sdllink.c
+index 05c52b1..4274c9d 100644
+--- a/src/linux/sdllink.c
++++ b/src/linux/sdllink.c
+@@ -307,6 +307,8 @@ int Main_Proc(void)
+           case SDL_HAT_UP:
+             pressed[offset + 3] = 1;
+             pressed[offset + 2] = 0;
++            pressed[offset + 1] = 0;
++            pressed[offset + 0] = 0;
+             break;
+           case SDL_HAT_RIGHTUP:
+             pressed[offset] = 1;
+@@ -317,6 +319,8 @@ int Main_Proc(void)
+           case SDL_HAT_RIGHT:
+             pressed[offset] = 1;
+             pressed[offset + 1] = 0;
++            pressed[offset + 2] = 0;
++            pressed[offset + 3] = 0;
+             break;
+           case SDL_HAT_RIGHTDOWN:
+             pressed[offset] = 1;
+@@ -326,6 +330,8 @@ int Main_Proc(void)
+             break;
+           case SDL_HAT_DOWN:
+             pressed[offset + 2] = 1;
++            pressed[offset + 0] = 0;
++            pressed[offset + 1] = 0;
+             pressed[offset + 3] = 0;
+             break;
+           case SDL_HAT_LEFTDOWN:
+@@ -337,6 +343,8 @@ int Main_Proc(void)
+           case SDL_HAT_LEFT:
+             pressed[offset + 1] = 1;
+             pressed[offset] = 0;
++            pressed[offset + 2] = 0;
++            pressed[offset + 3] = 0;
+             break;
+           case SDL_HAT_LEFTUP:
+             pressed[offset + 1] = 1;
