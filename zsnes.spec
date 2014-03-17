@@ -7,11 +7,11 @@
 Summary:	Nintendo Super NES / Super Famicom Emulator
 Name:		zsnes
 Version:	1.51
-Release:	12
+Release:	13
 Epoch:		1
 License:	GPLv2+
 Group:		Emulators
-URL:		http://zsnes.sourceforge.net
+Url:		http://zsnes.sourceforge.net
 Source0:	http://prdownloads.sourceforge.net/zsnes/%{name}%{fversion}src.tar.bz2
 Source1:	%{name}-icons.tar.bz2
 Patch0:		zsnes150-desktop.patch
@@ -38,6 +38,17 @@ of that system's graphic and sound capabilities.
 The GUI enables the user to select games, change options, enable cheat codes
 and to save the game state, even network play is possible.
 
+%files
+%doc docs/*
+%{_bindir}/*
+%{_iconsdir}/%{name}.png
+%{_miconsdir}/%{name}.png
+%{_liconsdir}/%{name}.png
+%{_mandir}/man1/%{name}.1*
+%{_datadir}/applications/%{name}.desktop
+
+#----------------------------------------------------------------------------
+
 %prep
 %setup -q -n %{name}_%{dversion}
 %patch0 -p1
@@ -47,16 +58,18 @@ and to save the game state, even network play is possible.
 %patch4 -p1
 %patch5 -p1
 %patch6 -p1
-cd src
-#./autogen.sh
-autoreconf -fiv
 
 %build
+find . -name "Makefile*" -o -name "*.m4" |xargs sed -i -e 's,configure.in,configure.ac,g'
 cd src
+autoreconf -fiv
 # zsnes do not work with fortify patch, and i frankly do not want to mess with the mix of asm and C source code
 # (misc)
 export CFLAGS="-O2 -g -pipe -fexceptions -fomit-frame-pointer -fasynchronous-unwind-tables"
-%configure2_5x --x-includes=/usr/X11R6/include --enable-libao --disable-cpucheck force_arch=i586
+%configure2_5x \
+	--enable-libao \
+	--disable-cpucheck \
+	force_arch=i586
 make
 
 %install
@@ -73,13 +86,4 @@ install -m 755 -d %{buildroot}{%{_miconsdir},%{_iconsdir},%{_liconsdir}}
 tar xOjf %{SOURCE1} %{name}-16x16.png > %{buildroot}%{_miconsdir}/%{name}.png
 tar xOjf %{SOURCE1} %{name}-32x32.png > %{buildroot}%{_iconsdir}/%{name}.png
 tar xOjf %{SOURCE1} %{name}-48x48.png > %{buildroot}%{_liconsdir}/%{name}.png
-
-%files
-%doc docs/*
-%{_bindir}/*
-%{_iconsdir}/%{name}.png
-%{_miconsdir}/%{name}.png
-%{_liconsdir}/%{name}.png
-%{_mandir}/man1/%{name}.1*
-%{_datadir}/applications/%{name}.desktop
 

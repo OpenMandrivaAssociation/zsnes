@@ -7,4 +7,4 @@
 -Path=
  Icon=zsnes.png
 -Categories=Application;Game;Emulator;
-+Categories=Game;Emulator;X-MandrivaLinux-MoreApplications-Emulators;
++Categories=Game;Emulator;
