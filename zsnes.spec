@@ -7,7 +7,7 @@
 Summary:	Nintendo Super NES / Super Famicom Emulator
 Name:		zsnes
 Version:	1.51
-Release:	13
+Release:	14
 Epoch:		1
 License:	GPLv2+
 Group:		Emulators
