@@ -11,7 +11,7 @@ Release:	14
 Epoch:		1
 License:	GPLv2+
 Group:		Emulators
-Url:		http://zsnes.sourceforge.net
+Url:		https://zsnes.sourceforge.net
 Source0:	http://prdownloads.sourceforge.net/zsnes/%{name}%{fversion}src.tar.bz2
 Source1:	%{name}-icons.tar.bz2
 Patch0:		zsnes150-desktop.patch
