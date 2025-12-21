@@ -21,6 +21,11 @@ Patch3:		zsnes-1.51-libpng15.patch
 Patch4:		zsnes-1.51-gcc4.7.patch
 Patch5:		zsnes-1.51-hat-events.patch
 Patch6:		zsnes-1.51-matrix-init.patch
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	libtool-base
+BuildRequires:	slibtool
+BuildRequires:	make
 BuildRequires:	nasm
 BuildRequires:	pkgconfig(ao)
 BuildRequires:	pkgconfig(gl)
